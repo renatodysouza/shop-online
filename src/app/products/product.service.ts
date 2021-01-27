@@ -9,7 +9,6 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getProducts() {
-    console.log('testy')
     return this.http.get('https://5ee744ce52bb0500161fd6e4.mockapi.io/products');
   }
 }

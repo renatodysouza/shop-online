@@ -1,3 +1,25 @@
 
 
+<div class="col-lg-12">
+  <div class="row-item">
+    <div class="product-item-wrapper">
+      <div *ngFor="let product of productList" class="product-item">
+        <img class="product-img" [src]="product.photo" alt="product.name">
+        <div class="product-content">
+          <div class="rating"><img src="assets/images/stars-5.png" alt="text_reviews"></div>
+          <div class="product-label">{{product.name}}</div>
+          <div class="product-number">Product {{product.id}}</div>
+          <div class="product-price">{{product.price}}</div>
+          <a title="Add to Cart" class="button_cart" style="color: rgb(25, 25, 25); background-color: rgb(252, 252, 251); border-color: rgb(220, 220, 220);">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+    <div id="paginator" *ngIf="productList">
+       <div (click)='changeNumberPage(i + 1)' *ngFor="let item of getNumberOfPages(numberOfProductsByPag); index as i"
+       class="pag-number"
+       [ngStyle]="{'backgroundColor': actualNumber === i + 1 ? '#ff5722' : '#d6d6d6'}" >{{i + 1}}</div>
+       <div (click)='changeNumberPage(actualNumber + 1)' class="pag-go-last">></div>
+    </div>
+  </div>
 
+</div>
