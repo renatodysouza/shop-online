@@ -10,6 +10,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ProductsComponent } from './products/products.component';
 import { FooterComponent } from './layout/footer/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CartComponent } from './cart/cart.component';
 
 describe('AppComponent', () => {
   beforeEach(() => {
@@ -19,7 +20,8 @@ describe('AppComponent', () => {
         MainComponent,
         HeaderComponent,
         FooterComponent,
-        ProductsComponent
+        ProductsComponent,
+        CartComponent
       ],
       imports: [
         BrowserModule,

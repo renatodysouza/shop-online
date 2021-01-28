@@ -5,6 +5,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductsComponent } from './products.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { CartComponent } from '../cart/cart.component';
 
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
@@ -12,7 +13,7 @@ describe('ProductsComponent', () => {
 
   beforeEach((() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductsComponent ],
+      declarations: [ ProductsComponent,CartComponent ],
       imports: [
         HttpClientTestingModule,
         FontAwesomeModule

@@ -1,0 +1,91 @@
+<!-- <div class="main-cart">
+    <h1>My Cart</h1>
+    <div class="double-block">
+        <fa-icon class="trash" [icon]="fatrash"></fa-icon>
+        <div *ngFor="let item of productsCart" class="container-cart">
+            <img [src]="item.photo" alt="" srcset="">
+            <div class="content-cart">
+                <div class="title">{{item.name}}</div>
+                <div class="price">€ {{item.price}}</div>
+            </div>
+        </div>
+        <div class="bill">
+            <div class="bill-title">Total</div>
+            <div class="bill-total">€ {{'6000'}}</div>
+        </div>
+
+    </div>
+
+</div> -->
+<!-- <div class="main-cart">
+    <table>
+        <tr class="top-table">
+            <th></th>
+            <th>PRODUCT</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>Total</th>
+        </tr>
+        <tr *ngFor="let item of productsCart">
+            <td>
+                <fa-icon class="trash" [icon]="fatrash"></fa-icon>
+            </td>
+            <td>
+                <div class="content-product">
+                    <img [src]="item.photo" alt="" srcset="">
+                    <div class="name-product">{{item.name}}</div>
+                </div>
+            </td>
+            <td>Smith</td>
+            <td>€ {{item.price}}</td>
+            <td>€ {{'6000'}}</td>
+        </tr>
+
+    </table>
+
+</div> -->
+<div class="main-cart">
+    <table>
+        <thead>
+            <th>PRODUCT</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>Total</th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of productsCart">
+                <td class="content-product">
+                    <fa-icon class="trash" [icon]="fatrash"></fa-icon>
+                    <img [src]="item.photo" alt="" srcset="">
+                    <span class="name-product">{{item.name}}</span>
+                </td>
+                <td>{{item.price}}</td>
+                <td>
+                    <div class="count">
+                        <span (click)='decremmentQuantity()' class="minus">-</span>
+                        <span class="value">{{quantity}}</span>
+                        <span (click)='incremmentQuantity()' class="plus">+</span>
+                    </div>
+                </td>
+                <td>€{{item.price * quantity}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="subtotal">
+        <div class="content-subtotal">
+            <span><b>SUBTOTAL</b></span>
+            <span><b>€6500</b></span>
+        </div>
+        <div class="checkout">
+            <p id="freeShipclaim" class="freeShipMsg freeShipclaim" style="display: block;"><i class="ad ad-truck-l"></i>
+                <fa-icon class="trash" [icon]="faTruck"></fa-icon><b>Congratulations! </b>You have got <b>FREE Shipping</b></p>
+            <p class="cart__shipping">Shipping &amp; taxes calculated at checkout</p>
+            <label for="cartTearm"> <input type = "checkbox" nome = "terms" value = ""> I agree with the terms and conditions</label>
+            <button class="btn">PROCEED TO CHECKOUT</button>
+        </div>
+
+    </div>
+
+
+</div>
