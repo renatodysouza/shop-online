@@ -1,13 +1,2 @@
-<div class="container-header">
-    <div class="header-main">
-        <div id="logo">FakeShop</div>
-        <form class="form" action="action_page.php">
-            <input type="text" placeholder="Search.." name="search">
-            <button type="submit"><fa-icon [icon]="searchIcon"></fa-icon>Search</button>
-        </form>
-        <div>logo</div>
-        <div id="cart" [routerLink]="['/cart']">
-            <fa-icon [icon]="cartIcon"></fa-icon>
-        </div>
-    </div>
-</div>
+<app-header-top></app-header-top>
+<app-sub-header></app-sub-header>

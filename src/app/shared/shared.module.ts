@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // put directive, pipes, components shared in multiple modules 
 // example loading spinner
@@ -9,10 +10,12 @@ import { NgModule } from '@angular/core';
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule,
   ],
   exports: [
-    CommonModule
+    CommonModule,
+    FontAwesomeModule,
   ]
 })
 export class SharedModule { }

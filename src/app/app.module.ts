@@ -1,3 +1,4 @@
+import { ProductModule } from './products/product.module';
 import { CartModule } from './cart/cart.module';
 import { CoreModule } from './core/core.module';
 import { CartComponent } from './cart/cart.component';
@@ -12,20 +13,21 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SharedModule } from './shared/shared.module';
 import { FooterComponent } from './core/footer/footer.component';
 import { HeaderComponent } from './core/header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    ProductsComponent,
   ],
   imports: [
     BrowserModule,
     CommonModule,
     HttpClientModule,
     AppRoutingModule,
-    FontAwesomeModule,
     CoreModule,
     SharedModule,
-    CartModule
+    CartModule,
+    ProductModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,12 +7,14 @@
             <div *ngFor="let product of productList " class="product-item">
                 <img class="product-img" [src]="product.photo" alt="product.name">
                 <div class="product-content">
-                    <div class="rating"><img src="assets/images/stars-5.png" alt="text_reviews"></div>
-                    <div class="product-label">{{product.name}}</div>
                     <div class="product-number">Product {{product.id}}</div>
-                    <div class="product-price">{{product.price}}</div>
-                    <a (click)="getProductAdded(product)" title=" Add to Cart " class="button_cart " style="color: rgb(25, 25, 25); background-color: rgb(252, 252, 251); border-color: rgb(220, 220, 220); ">Add to Cart</a>
-                </div>
+                    <div class="product-label">{{product.name}}</div>
+                    <div class="all-price">
+                        <div class="product-price">€ {{product.price}}</div>
+                        <div class="product-discount">€ {{product.price}}</div>
+
+                    </div>
+               </div>
             </div>
         </div>
         <div id="paginator" *ngIf="productList ">

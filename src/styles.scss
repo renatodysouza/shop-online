@@ -2,4 +2,13 @@
 html, body, .wrapper {
     min-height: 100vh;
     margin: 0;
+    font-family: muli, sans sherif;
+}
+
+a {
+    color: rgb(17, 17, 17);
+}
+
+*:focus {
+    outline: none;
 }

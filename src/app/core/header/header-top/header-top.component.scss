@@ -1,0 +1,76 @@
+:host {
+    border: 1px solid #ece9e9;
+    display: flex;
+}
+
+
+.top-content {
+    display: flex;
+    width: 99%;
+}
+
+.email-top {
+    min-width: 20%;
+    border-right: 1px solid #f3ecec;
+    text-align: right;
+}
+
+.email-top > * {
+   margin: 5px;
+}
+
+.tel {
+    min-width: 40%;
+}
+
+.social {
+    min-width: 8%;
+    border-right: 1px solid #d6d6d6;
+}
+
+.language {
+    min-width: 8%;
+    border-right: 1px solid #d6d6d6;
+}
+
+#lang-select {
+    border: none;
+    background-color: white;
+    margin-left: 9px;
+}
+
+.block-lang {
+    display: flex;
+    padding: 17px;
+}
+
+.login {
+    min-width: 8%;
+} 
+
+.box-content{
+    padding: 18px 9px 8px 7px;
+}
+
+.box-content > * {
+    margin: 5px;
+ }
+ 
+
+ @media only screen and (max-width: 1200px) {
+    .tel {
+        min-width: 30%;
+    }
+ }
+
+ @media only screen and (max-width: 992px) {
+    .social {
+        display: none;
+    }
+ }
+
+ @media only screen and (max-width: 768px) {
+    .tel, .email-top {
+        display: none;
+    }
+ }
