@@ -12,13 +12,21 @@ class ProductsServiceMock {
   }
 }
 
+class MainServiceMock {
+  setProductInCart() {
+    return of(mockProduct);
+  }
+}
+
 describe('ProductsComponent', () => {
   let component: ProductsComponent;
   let productsServiceMock: any;
+  let mainServiceMock: any;
 
   beforeEach((() => {
     productsServiceMock = new ProductsServiceMock();
-    component = new ProductsComponent(productsServiceMock);
+    mainServiceMock = new MainServiceMock();
+    component = new ProductsComponent(productsServiceMock, mainServiceMock );
   }));
 
   it('should create', () => {
@@ -61,6 +69,16 @@ describe('ProductsComponent', () => {
   it('should be called getProductList() when changeNumberPage is called', () => {
     const spy = spyOn(component, 'getProductList');
     component.changeNumberPage(1);
+    expect(spy).toHaveBeenCalled();
+  });
+
+  it('should be add Produt', () => {
+    const spy = spyOn(mainServiceMock, 'setProductInCart');
+    const  mockProductUnic = {id:'1',name:'Generic Steel Towels',
+      price:'660.00',
+      photo:'http://lorempixel.com/640/480/cats'
+    };
+    component.getProductAdded(mockProductUnic as any);
     expect(spy).toHaveBeenCalled();
   });
 

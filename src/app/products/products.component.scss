@@ -6,6 +6,25 @@
     padding: 3% 10% 0 10%;
 }
 
+.bloco-content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 75vh;
+}
+
+.error-msg {
+    padding: 15px;
+    margin: 10px 10px;
+    width: 35%;
+    border-radius: 4px;
+    background-color: rgb(71, 175, 71);
+}
+
+.row-item {
+    min-height: 900px;
+}
+
 .product-img {
     height: 300px;
     width: 300px;

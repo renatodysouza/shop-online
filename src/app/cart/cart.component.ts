@@ -1,3 +1,4 @@
+import { MainService } from './../main.service';
 import { Component, OnInit } from '@angular/core';
 import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,14 +11,12 @@ export class CartComponent implements OnInit {
   fatrash = faTrash;
   faTruck = faTruck;
   quantity = 1;
-  productsCart = [
-    {id:'1',name:'Generic Steel Towels',
-    price:'660.00',
-    photo:'http://lorempixel.com/640/480/cats'
-  }];
-  constructor() { }
+  productsCart: Array<any>;
+  constructor(private mainService: MainService) { }
 
   ngOnInit(): void {
+    this.productsCart = this.mainService.productCollection;
+    this.getCartProduct();
   }
 
   incremmentQuantity() {
@@ -30,6 +29,12 @@ export class CartComponent implements OnInit {
       return;
     }
     this.quantity --;
+  }
+
+  getCartProduct() {
+    this.mainService.productInCartEmitter.subscribe(product => {
+      this.productsCart = product;
+    });
   }
 
 }

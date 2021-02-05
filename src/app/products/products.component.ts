@@ -1,13 +1,11 @@
+import { MainService } from './../main.service';
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from './product.service';
-import { take } from 'rxjs/operators';
+import { take, catchError } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
+import { Product } from './product';
+import { EmptyError } from 'rxjs';
 
-interface Products {
-  id: string;
-  name: string;
-  price: string;
-  photo: string;
-}
 
 @Component({
   selector: 'app-products',
@@ -16,11 +14,14 @@ interface Products {
 })
 
 export class ProductsComponent implements OnInit {
-  productList: Array<Products>;
+  productList$: Observable<any>;
   numberOfProductsByPag: number;
+  errorMessage: string;
   completeAllProductLength: number;
   actualNumber: number;
-  constructor(private productsService: ProductService) {
+  constructor(
+    private productsService: ProductService,
+    private mainService: MainService) {
     this.numberOfProductsByPag = 8;
     this.actualNumber = 1;
    }
@@ -30,12 +31,13 @@ export class ProductsComponent implements OnInit {
   }
 
   getProductList() {
-    this.productsService.getProducts()
-    .pipe(take(1))
-    .subscribe((products: Array<Products>) => {
-      this.completeAllProductLength = products.length;
-      this.productList = this.setProductByPage(products);
-    });
+    this.productList$ = this.productsService.products$
+    .pipe(
+      catchError((error => {
+        this.errorMessage = error.message;
+        return EmptyError;
+      }))
+    );
   }
 
   getNumberOfPages(mumberProductByPag: number ) {
@@ -52,10 +54,14 @@ export class ProductsComponent implements OnInit {
     this.getProductList();
   }
 
-  setProductByPage(productList: Array<Products>) {
+  setProductByPage(productList: Array<Product>) {
     const start = (this.numberOfProductsByPag * this.actualNumber) - this.numberOfProductsByPag ;
     const end = this.numberOfProductsByPag * this.actualNumber;
     return productList.slice(start,end);
+  }
+
+  getProductAdded(product: Product) {
+     this.mainService.setProductInCart(product);
   }
 }
 
