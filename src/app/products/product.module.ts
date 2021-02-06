@@ -1,7 +1,9 @@
 import { ProductsComponent } from './products.component';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 import { SharedModule } from '../shared/shared.module';
+import { productReduce } from './state/product.reducer';
 
 
 @NgModule({
@@ -10,7 +12,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     RouterModule,
-    SharedModule
+    SharedModule,
+    StoreModule.forFeature('products', productReduce)
   ],
   exports: [
     ProductsComponent

@@ -2,8 +2,8 @@
     display: flex;
     flex-direction: row;
     flex-flow: row wrap;
-    justify-content: space-around;
-    padding: 3% 10% 0 10%;
+    justify-content: start;
+    padding: 3% 10% 0 21%;
 }
 
 .bloco-content {
@@ -83,8 +83,8 @@ a.button_cart {
     flex-direction: row;
     align-self: flex-end;
     justify-content: space-between;
-    padding: 0 12% 0 82%;
-    margin-bottom: 2%;
+    padding: 0 20% 0 78%;
+    margin-bottom: 5%;
 }
 
 .product-price {
@@ -107,8 +107,60 @@ a.button_cart {
     margin-top: 3px;
 }
 
+.content-img {
+    position: relative;
+    cursor: pointer;
+}
+
+.action {
+    background: #8887874f;
+    top: 0;
+    width: 100%;
+    position: absolute;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    img {
+       width: 23px;
+       color: white;
+    }
+}
+
+#panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 65%;
+}
+
+#add-favorite {
+    width: 95%;
+    text-align: right;
+    margin-top: 12px;
+}
+
+.see-product {
+    padding: 11px 10px 13px 10px;
+    background-color: white;
+    margin-left: 4px;
+}
+
+.add-cart {
+    background-color: #e7ab3c;
+    padding: 11px 10px 13px 10px;
+}
+
+.add-favorite {
+    padding: 8px;
+    background-color: white;
+    margin-right: 6px;
+}
+
 .pag-number,
-.pag-go-last {
+.pag-go-last {    background: #cac3c34f;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
     background-color: #d6d6d6;
     padding: 8px;
     cursor: pointer;

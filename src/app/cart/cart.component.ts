@@ -1,6 +1,8 @@
 import { MainService } from './../main.service';
 import { Component, OnInit } from '@angular/core';
 import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { Store } from '@ngrx/store';
+import { State } from '../products/state/product.reducer';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +14,10 @@ export class CartComponent implements OnInit {
   faTruck = faTruck;
   quantity = 1;
   productsCart: Array<any>;
-  constructor(private mainService: MainService) { }
+  constructor(
+    private mainService: MainService,
+    private store: Store<State>
+  ) { }
 
   ngOnInit(): void {
     this.productsCart = this.mainService.productCollection;

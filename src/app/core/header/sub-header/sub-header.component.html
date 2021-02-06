@@ -15,8 +15,14 @@
        
     </div>
     <div id="icones">
-        <img src="/assets/icons/heart.svg" alt="favorite">
-        <img src="/assets/icons/bag.svg" alt="cart">
+        <div class="fav-group">
+            <img src="/assets/icons/heart.svg" alt="favorite">
+            <span class="badges">{{ badgeFavoriteNumber }}</span>
+        </div>
+        <div class="fav-group">
+            <img src="/assets/icons/bag.svg" alt="cart">
+            <span class="badges">{{badgeCartNumber}}</span>
+        </div>
     </div>
     <div id="value">€256</div>
 </div>

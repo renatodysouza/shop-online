@@ -2,25 +2,41 @@
     <div *ngIf="errorMessage" class="bloco-content" >
         <div class="error-msg" >{{errorMessage}}</div>
     </div>
-    <div class="row-item" *ngIf="productList$ | async as productList">
+    <div class="row-item group" *ngIf="productList$ | async as productList">
         <div class="product-item-wrapper">
-            <div *ngFor="let product of productList " class="product-item">
-                <img class="product-img" [src]="product.photo" alt="product.name">
+            <div  *ngFor="let product of productList; let i = index" class="product-item">
+                <div [id]="i"  class="content-img" (mouseenter)="controlProductOptions($event, i)"
+                (mouseleave)="disableControlProductOptions()">
+                    <img [id]="i" class="product-img" [src]="product.photo" [alt]="product.name">               
+                    <div class="action" [@showHide]="showProductOptions && idSelected == i ? 'open' : 'closed'">
+                        <div id="panel">
+                            <div *ngIf="i !== favoriteId" class="add-favorite" (click)="setFavorite(product, i)">
+                                <img src="/assets/icons/heart.svg" alt="favorite">
+                            </div>
+                            <div *ngIf="i !== cartId" (click)="setCart(product, i)" class="add-cart">Add cart</div>
+                            <div class="see-product">See More</div>
+                        </div>
+                    </div>
+                </div>
                 <div class="product-content">
                     <div class="product-number">Product {{product.id}}</div>
                     <div class="product-label">{{product.name}}</div>
                     <div class="all-price">
                         <div class="product-price">€ {{product.price}}</div>
                         <div class="product-discount">€ {{product.price}}</div>
-
                     </div>
                </div>
             </div>
         </div>
-        <div id="paginator" *ngIf="productList ">
-            <div (click)='changeNumberPage(i + 1)' *ngFor="let item of getNumberOfPages(numberOfProductsByPag); index as i " class="pag-number " [ngStyle]="{ 'backgroundColor': actualNumber===i + 1 ? '#ff5722' : '#d6d6d6'} ">{{i + 1}}</div>
-            <div (click)='changeNumberPage(actualNumber + 1)' class="pag-go-last ">></div>
-        </div>
+        <div id="paginator" *ngIf="true">
+            <div (click)='changeNumberPage(i + 1)'
+             *ngFor="let item of getNumberOfPages(); let i = index">
+                <div 
+                    class="pag-number"
+                    [ngStyle]="{ 'backgroundColor': actualNumber === i + 1 ? '#ff5722' : '#d6d6d6'}">
+                       {{i + 1}}
+                </div>
+            </div>
+           </div>
     </div>
-
 </div>
