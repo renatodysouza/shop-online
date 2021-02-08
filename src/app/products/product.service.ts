@@ -9,7 +9,8 @@ import { Product } from './product';
   providedIn: 'root'
 })
 export class ProductService {
-  private urlProducts = 'https://5ee744ce52bb0500161fd6e4.mockapi.io/products';
+ // private urlProducts = 'https://5ee744ce52bb0500161fd6e4.mockapi.io/products';
+  private urlProducts = 'https://fakestoreapi.com/products';
 
   products$ = this.http.get(this.urlProducts);
 

@@ -7,34 +7,34 @@
             <th>Total</th>
         </thead>
         <tbody>
-            <tr *ngFor="let item of productsCart">
+            <tr *ngFor="let item of productsCart$ | async; let i = index">
                 <td class="content-product">
-                    <fa-icon class="trash" [icon]="fatrash"></fa-icon>
-                    <img [src]="item.photo" alt="" srcset="">
-                    <span class="name-product">{{item.name}}</span>
+                    <fa-icon class="trash" (click)="deleteProduct(item)" [icon]="fatrash"></fa-icon>
+                    <img [src]="item.image" alt="" srcset="">
+                    <span class="name-product">{{item.title}}</span>
                 </td>
                 <td>{{item.price}}</td>
                 <td>
                     <div class="count">
-                        <span (click)='decremmentQuantity()' class="minus">-</span>
-                        <span class="value">{{quantity}}</span>
-                        <span (click)='incremmentQuantity()' class="plus">+</span>
+                        <span (click)='decremmentQuantity(item, i)' class="minus">-</span>
+                        <span class="value">{{quantity[i] || 1}}</span>
+                        <span (click)='incremmentQuantity(item.id, i)' class="plus">+</span>
                     </div>
                 </td>
-                <td>€{{item.price * quantity}}</td>
+                <td>€{{getPriceProduct(item.price, i)}}</td>
             </tr>
         </tbody>
     </table>
 
-    <div class="not-product" *ngIf="!productsCart || productsCart.length === 0">
+    <div class="not-product" *ngIf="(productsCart$ | async)?.length === 0">
         <img src="/assets/images/bag.jpeg" alt="" srcset="">
         <span>You don't have any items in your cart.</span>
         <button [routerLink]="['/']">CONTINUE SHOPPING</button>
     </div>
-    <div class="subtotal" *ngIf="productsCart && productsCart.length > 0">
+    <div class="subtotal" *ngIf="(productsCart$ | async)?.length > 0">
         <div class="content-subtotal">
             <span><b>SUBTOTAL</b></span>
-            <span><b>€6500</b></span>
+            <span><b>€{{totalCart$ | async}}</b></span>
         </div>
         <div class="checkout">
             <p id="freeShipclaim" class="freeShipMsg freeShipclaim" style="display: block;"><i class="ad ad-truck-l"></i>

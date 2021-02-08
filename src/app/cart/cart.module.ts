@@ -6,7 +6,7 @@ import { CartComponent } from './cart.component';
 
 @NgModule({
   declarations: [
-    CartComponent
+    CartComponent,
   ],
   imports: [
     RouterModule,

@@ -19,10 +19,15 @@
             <img src="/assets/icons/heart.svg" alt="favorite">
             <span class="badges">{{ badgeFavoriteNumber }}</span>
         </div>
-        <div class="fav-group">
+        <div class="fav-group" 
+        (mouseenter)="showModal()">
             <img src="/assets/icons/bag.svg" alt="cart">
             <span class="badges">{{badgeCartNumber}}</span>
         </div>
+        <div *ngIf="badgeCartNumber > 0 && showCart"
+             id="modal-cart"  (mouseleave)="showModal()">
+            <app-modal-cart></app-modal-cart>
+        </div>
     </div>
-    <div id="value">€256</div>
+    <div id="value">€ {{totalCart$ | async}}</div>
 </div>

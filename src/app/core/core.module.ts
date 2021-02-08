@@ -1,3 +1,5 @@
+import { RouterModule } from '@angular/router';
+import { ModalCartComponent } from './header/sub-header/modal-cart/modal-cart.component';
 import { HeaderComponent } from './header/header.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,14 +14,17 @@ import { SubHeaderComponent } from './header/sub-header/sub-header.component';
     FooterComponent,
     HeaderTopComponent,
     SubHeaderComponent,
+    ModalCartComponent
   ],
   imports: [
     CommonModule,
     SharedModule,
+    RouterModule
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    ModalCartComponent
   ]
 })
 export class CoreModule { }

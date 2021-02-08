@@ -13,6 +13,7 @@ export interface ProductState {
     products: Product[];
     cart: Product[];
     numberOfProductSelect: number;
+    totalCart: string;
 }
 
 const initialState = {
@@ -20,6 +21,7 @@ const initialState = {
     numberOfProductSelect: 0,
     products: [],
     cart: [],
+    totalCart: '0'
 };
 
 export const productReduce = createReducer<ProductState>(
@@ -42,6 +44,55 @@ export const productReduce = createReducer<ProductState>(
            ...state,
            cart: [...state.cart, action.products]
        };
+    }),
+
+    on(ProductActions.deleteCart, (state, action: any): ProductState  => {
+        let total = 0;
+        const newCart = state.cart.filter(cartItem => cartItem.id !== action.id );
+        newCart.map(cartItem => total += parseFloat(cartItem.price));
+        return {
+           ...state,
+           cart: [...newCart],
+           totalCart: total.toFixed(2)
+       };
+    }),
+
+    on(ProductActions.getTotalCart, (state, action: any): ProductState  => {
+        let total = 0;
+        state.cart.map(cartItem => total += parseFloat(cartItem.price));
+        return {
+           ...state,
+           totalCart: total.toFixed(2)
+
+       };
+    }),
+    on(ProductActions.addQuantiCart, (state, action: any): ProductState  => {
+        let valueOfProduct;
+        state.cart.map(cartItem => {
+            if (cartItem.id === action.id) {
+                valueOfProduct = parseFloat(cartItem.price);
+            }
+        });
+        valueOfProduct = parseFloat(state.totalCart) + valueOfProduct;
+        return {
+           ...state,
+           totalCart: valueOfProduct.toFixed(2)
+       };
+    }),
+
+    on(ProductActions.decreQuantiCart, (state, action: any): ProductState  => {
+        let valueOfProduct;
+        state.cart.map(cartItem => {
+            if (cartItem.id === action.cartId.id) {
+                valueOfProduct = parseFloat(cartItem.price);
+            }
+        });
+        valueOfProduct = parseFloat(state.totalCart) - valueOfProduct;
+        return {
+           ...state,
+           totalCart: valueOfProduct.toFixed(2)
+       };
     })
+
 );
 

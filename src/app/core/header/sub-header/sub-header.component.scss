@@ -70,6 +70,9 @@ input#search-term {
 
 .fav-group {
     position: relative;
+    cursor: pointer;
+
+
 }
 
 .badges {
@@ -95,4 +98,9 @@ input#search-term {
   flex-grow: 1;
 }
 
+#modal-cart {
+    position: absolute;
+    z-index: 999;
+    margin: 50px 0 0 23px;
+}
 

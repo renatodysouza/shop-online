@@ -1,0 +1,26 @@
+<div class="content">
+    <div class="content-cart">
+        <div class="group-cart" *ngFor="let cart of productsCart$ | async">
+            <div class="image-cart">
+                <img [src]="cart.image" alt="">
+            </div>
+            <div class="description">
+                <span class="title">{{cart.title | slice:0:20}}</span>
+                <span class="price">1 x € {{cart.price}}</span>
+            </div>
+        </div>
+
+    </div>
+     <div class="footer-cart">
+        <div class="group-subtotal">
+            <span class="subtotal-tag">Subtotal:</span>
+            <span class="subtotal-price">€ {{totalCart$ | async}}</span>
+        </div>
+        <div class="group-btn">
+            <button [routerLink]="['/cart']" id="view-cart">View Cart</button>
+            <button id="checkout">Checkout</button>
+
+        </div>
+    </div>
+</div>
+

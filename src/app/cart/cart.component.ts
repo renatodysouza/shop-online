@@ -1,9 +1,17 @@
+/* eslint-disable @typescript-eslint/prefer-for-of */
+import { take } from 'rxjs/operators';
+import { filter } from 'rxjs/internal/operators/filter';
+/* eslint-disable arrow-body-style */
+import { Product } from './../products/product';
+import { Observable } from 'rxjs';
 import { MainService } from './../main.service';
 import { Component, OnInit } from '@angular/core';
 import { faTrash, faTruck } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { State } from '../products/state/product.reducer';
-
+import { map } from 'rxjs/internal/operators/map';
+import { tap } from 'rxjs/internal/operators/tap';
+import * as  ActionProduct from '../products/state/products.actions';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -12,34 +20,64 @@ import { State } from '../products/state/product.reducer';
 export class CartComponent implements OnInit {
   fatrash = faTrash;
   faTruck = faTruck;
-  quantity = 1;
-  productsCart: Array<any>;
+  quantity = { };
+  listOfCart: Product[];
+  productsCart$: Observable<any>;
+  totalCart$: Observable<string>;
+  subTotal = 0;
   constructor(
     private mainService: MainService,
     private store: Store<State>
   ) { }
 
   ngOnInit(): void {
-    this.productsCart = this.mainService.productCollection;
     this.getCartProduct();
+    this.getTotal();
   }
 
-  incremmentQuantity() {
-    this.quantity ++;
+  getTotal() {
+    this.totalCart$ = this.store.select('products')
+    .pipe(
+      map(res => res.totalCart),
+    );
   }
 
-  decremmentQuantity() {
-    if (this.quantity === 1) {
-      this.quantity = 1;
-      return;
+  getPriceProduct(price, index) {
+    return price * (this.quantity[index] || 1);
+  }
+
+  incremmentQuantity(id, index) {
+    this.store.dispatch(ActionProduct.addQuantiCart({id}));
+    this.setIndexQuantity(index, true);
+  }
+
+  setIndexQuantity(index, operate) {
+    if (this.quantity[index] === undefined) {
+      this.quantity[index] = 2;
+    } else {
+      const operator = operate ? this.quantity[index]++ :
+      this.quantity[index]--;
     }
-    this.quantity --;
+  }
+
+   decremmentQuantity(cartId, index) {
+     if (this.quantity[index] === 1) {
+       return;
+     }
+    this.store.dispatch(ActionProduct.decreQuantiCart({cartId}));
+    this.setIndexQuantity(index, false);
   }
 
   getCartProduct() {
-    this.mainService.productInCartEmitter.subscribe(product => {
-      this.productsCart = product;
-    });
+    this.productsCart$ = this.store.select('products')
+    .pipe(
+      map(product => product.cart),
+      tap(cart => this.listOfCart = cart),
+    );
+  }
+
+  deleteProduct(product) {
+    this.store.dispatch(ActionProduct.deleteCart({id: product.id}));
   }
 
 }

@@ -113,7 +113,7 @@ export class ProductsComponent implements OnInit {
     return productList.slice(start,end);
   }
 
-  getProductAdded(product: Product) {
+  getProductAdded(product: any) {
      this.mainService.setProductInCart(product);
   }
 
@@ -134,6 +134,7 @@ export class ProductsComponent implements OnInit {
   setCart(products, index) {
     this.cartId = index;
     this.store.dispatch(ActionProduct.setCart({products}));
+    this.store.dispatch(ActionProduct.getTotalCart());
   }
 }
 
