@@ -1,8 +1,6 @@
-import { TestBed } from '@angular/core/testing';
-
 import { MainService } from './main.service';
 
-describe('MainService', () => {
+fdescribe('MainService', () => {
   let service: MainService;
 
   beforeEach(() => {
@@ -13,7 +11,7 @@ describe('MainService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should be created', () => {
+  it('should be called productInCartEmitter inside of setProductInCart ', () => {
     const spy = spyOn(service.productInCartEmitter, 'emit');
     const product = ['product'];
     service.setProductInCart(product as any);

@@ -26,8 +26,8 @@ export class CartComponent implements OnInit {
   totalCart$: Observable<string>;
   subTotal = 0;
   constructor(
-    private mainService: MainService,
-    private store: Store<State>
+    public mainService: MainService,
+    public store: Store<State>
   ) { }
 
   ngOnInit(): void {
@@ -50,7 +50,7 @@ export class CartComponent implements OnInit {
     this.store.dispatch(ActionProduct.addQuantiCart({id}));
     this.setIndexQuantity(index, true);
   }
-
+// see more
   setIndexQuantity(index, operate) {
     if (this.quantity[index] === undefined) {
       this.quantity[index] = 2;
@@ -76,7 +76,7 @@ export class CartComponent implements OnInit {
     );
   }
 
-  deleteProduct(product) {
+  deleteProduct(product: Product) {
     this.store.dispatch(ActionProduct.deleteCart({id: product.id}));
   }
 

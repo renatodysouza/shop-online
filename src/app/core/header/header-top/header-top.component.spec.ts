@@ -1,14 +1,16 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderTopComponent } from './header-top.component';
 
-describe('HeaderTopComponent', () => {
+fdescribe('HeaderTopComponent', () => {
   let component: HeaderTopComponent;
   let fixture: ComponentFixture<HeaderTopComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderTopComponent ]
+      declarations: [ HeaderTopComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
   });

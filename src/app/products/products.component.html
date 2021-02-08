@@ -5,7 +5,7 @@
     <div class="row-item group" *ngIf="productList$ | async as productList">
         <div class="product-item-wrapper">
             <div  *ngFor="let product of productList; let i = index" class="product-item">
-                <div [id]="i"  class="content-img" (mouseenter)="controlProductOptions($event, i)"
+                <div [id]="i"  class="content-img" (mouseenter)="controlProductOptions($event)"
                 (mouseleave)="disableControlProductOptions()">
                     <img [id]="i" class="product-img" [src]="product.image" [alt]="product.title">               
                     <div class="action" [@showHide]="showProductOptions && idSelected == i ? 'open' : 'closed'">

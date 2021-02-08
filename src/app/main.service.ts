@@ -1,13 +1,5 @@
 import { Injectable, EventEmitter } from '@angular/core';
-
-
-interface Products {
-  id: string;
-  name: string;
-  price: string;
-  photo: string;
-}
-
+import { Product } from './products/product';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +9,7 @@ export class MainService {
   productCollection = [];
   constructor() { }
 
-  setProductInCart(product: Products) {
+  setProductInCart(product: Product) {
     this.productCollection.push(product);
     this.productInCartEmitter.emit(this.productCollection);
   }

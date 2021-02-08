@@ -1,43 +1,54 @@
-import { HeaderComponent } from './layout/header/header.component';
-import { TestBed, async } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app.routing.module';
-import { MainComponent } from './main/main.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { ProductsComponent } from './products/products.component';
-import { FooterComponent } from './layout/footer/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CartComponent } from './cart/cart.component';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from 'src/environments/environment';
+import { CoreModule } from './core/core.module';
+import { ProductModule } from './products/product.module';
+import { SharedModule } from './shared/shared.module';
 
-describe('AppComponent', () => {
+fdescribe('AppComponent', () => {
+    let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        MainComponent,
-        HeaderComponent,
-        FooterComponent,
-        ProductsComponent,
-        CartComponent
       ],
       imports: [
         BrowserModule,
         CommonModule,
         HttpClientModule,
         AppRoutingModule,
-        FontAwesomeModule
+        FontAwesomeModule,
+        CoreModule,
+        SharedModule,
+        ProductModule,
+        StoreModule.forRoot({}, {}),
+        StoreDevtoolsModule.instrument(
+          { maxAge: 25, logOnly: environment.production }
+        ),
       ],
-      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   });
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
+
+
 
 });

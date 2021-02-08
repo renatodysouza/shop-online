@@ -56,9 +56,9 @@ export class ProductsComponent implements OnInit {
 
 
   constructor(
-    private productsService: ProductService,
-    private mainService: MainService,
-    private store: Store<State>) {
+    public productsService: ProductService,
+    public mainService: MainService,
+    public store: Store<State>) {
     this.numberOfProductsByPag = 8;
     this.actualNumber = 1;
    }
@@ -113,7 +113,7 @@ export class ProductsComponent implements OnInit {
     return productList.slice(start,end);
   }
 
-  getProductAdded(product: any) {
+  getProductAdded(product: Product) {
      this.mainService.setProductInCart(product);
   }
 
@@ -121,17 +121,17 @@ export class ProductsComponent implements OnInit {
     this.showProductOptions = false;
   }
 
-  controlProductOptions(event, index) {
+  controlProductOptions(event) {
     this.idSelected = event.target.id;
     this.showProductOptions = true;
   }
 
-  setFavorite(product, index) {
+  setFavorite(product: Product[], index: number) {
     this.favoriteId = index;
     this.store.dispatch(ActionProduct.setFavorite({product}));
   }
 
-  setCart(products, index) {
+  setCart(products: Product, index: number) {
     this.cartId = index;
     this.store.dispatch(ActionProduct.setCart({products}));
     this.store.dispatch(ActionProduct.getTotalCart());
