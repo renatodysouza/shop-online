@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "kuantokusta": {
+    "shopOnline": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/kuantokusta",
+            "outputPath": "dist/shopOline",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,18 +65,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "kuantokusta:build"
+            "browserTarget": "shopOnline:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "kuantokusta:build:production"
+              "browserTarget": "shopOnline:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "kuantokusta:build"
+            "browserTarget": "shopOnline:build"
           }
         },
         "test": {
@@ -109,16 +109,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "kuantokusta:serve"
+            "devServerTarget": "shopOnline:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "kuantokusta:serve:production"
+              "devServerTarget": "shopOnline:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "kuantokusta"
+  "defaultProject": "shopOnline"
 }
