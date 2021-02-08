@@ -1,7 +1,7 @@
 import { ProductService } from './product.service';
 import { of } from 'rxjs';
 
-fdescribe('ProductService', () => {
+describe('ProductService', () => {
   let service: ProductService;
   let httpSpy: { get: jasmine.Spy };
 

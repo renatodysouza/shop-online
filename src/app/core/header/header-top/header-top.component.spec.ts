@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeaderTopComponent } from './header-top.component';
 
-fdescribe('HeaderTopComponent', () => {
+describe('HeaderTopComponent', () => {
   let component: HeaderTopComponent;
   let fixture: ComponentFixture<HeaderTopComponent>;
 

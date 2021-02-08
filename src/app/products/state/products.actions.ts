@@ -37,3 +37,21 @@ export const decreQuantiCart = createAction(
 );
 
 
+export const loadProducts = createAction(
+  '[Products] loadProducts'
+);
+
+export const loadProductsSuccess = createAction(
+  '[Products] loadProductsSuccess',
+  props<{products: any}>()
+);
+
+export const loadProductsFailure = createAction(
+  '[Products] loadProductsFailure',
+  props<{error: any}>()
+);
+
+export const isAddProductInCart = createAction(
+  '[Products] addProductInCart',
+  props<{isAdd: boolean}>()
+);

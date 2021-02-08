@@ -1,11 +1,9 @@
-import { getTotalCart } from './../../../../products/state/products.actions';
 import { Product } from './../../../../products/product';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { map } from 'rxjs/internal/operators/map';
 import { tap } from 'rxjs/internal/operators/tap';
 import { Observable } from 'rxjs';
-import * as  ActionProduct from './../../../../products/state/products.actions';
 
 @Component({
   selector: 'app-modal-cart',
@@ -26,7 +24,6 @@ export class ModalCartComponent implements OnInit {
     this.productsCart$ = this.store.select('products')
     .pipe(
       map(res => res.cart),
-      tap(console.log)
     );
   }
 

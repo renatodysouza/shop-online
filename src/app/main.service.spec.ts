@@ -1,6 +1,6 @@
 import { MainService } from './main.service';
 
-fdescribe('MainService', () => {
+describe('MainService', () => {
   let service: MainService;
 
   beforeEach(() => {

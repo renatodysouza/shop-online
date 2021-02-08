@@ -12,9 +12,11 @@ import { environment } from 'src/environments/environment';
 import { CoreModule } from './core/core.module';
 import { ProductModule } from './products/product.module';
 import { SharedModule } from './shared/shared.module';
+import { EffectsModule } from '@ngrx/effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-fdescribe('AppComponent', () => {
-    let component: AppComponent;
+describe('AppComponent', () => {
+  let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -24,6 +26,7 @@ fdescribe('AppComponent', () => {
       imports: [
         BrowserModule,
         CommonModule,
+        BrowserAnimationsModule,
         HttpClientModule,
         AppRoutingModule,
         FontAwesomeModule,
@@ -34,6 +37,7 @@ fdescribe('AppComponent', () => {
         StoreDevtoolsModule.instrument(
           { maxAge: 25, logOnly: environment.production }
         ),
+        EffectsModule.forRoot([]),
       ],
       schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();

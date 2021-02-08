@@ -1,8 +1,7 @@
 /* eslint-disable object-shorthand */
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { take, catchError, tap, map } from 'rxjs/operators';
+import { take, catchError, tap, map, pluck, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs/internal/Observable';
-import { EmptyError, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import {
   trigger,
@@ -16,6 +15,7 @@ import { ProductService } from './product.service';
 import { MainService } from './../main.service';
 import * as  ActionProduct from './state/products.actions';
 import { State, ProductState } from './state/product.reducer';
+import { getErrorProduct, getProductList } from './state/product.selector';
 
 @Component({
   selector: 'app-products',
@@ -43,8 +43,8 @@ import { State, ProductState } from './state/product.reducer';
 
 export class ProductsComponent implements OnInit {
   productList$: Observable<any>;
-  numberOfProductsByPag = 8;
-  errorMessage: string;
+  numberOfProductsByPag: number;
+  errorMessage$: Observable<string>;
   completeAllProductLength: number;
   actualNumber: number;
   showProductOptions = false;
@@ -59,16 +59,21 @@ export class ProductsComponent implements OnInit {
     public productsService: ProductService,
     public mainService: MainService,
     public store: Store<State>) {
-    this.numberOfProductsByPag = 8;
+    this.numberOfProductsByPag = 15;
     this.actualNumber = 1;
    }
 
   ngOnInit() {
-    this.setProducts();
+    this.store.dispatch(ActionProduct.loadProducts());
+    this.getProductList();
+    this.errorMessage$ = this.store.select(getErrorProduct);
   }
 
   getProductList() {
-    this.productList$ = this.store.select('products');
+    this.productList$ = this.store.select(getProductList)
+    .pipe(
+      map(prod => this.setProductByPage(prod))
+    );
   }
 
   listPaginatorSlice() {
@@ -79,23 +84,8 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  setProducts() {
-    this.productList$ = this.productsService.products$
-    .pipe(
-      tap(
-        (products: Array<Product>) => {
-          this.lengthOfProducts = products.length;
-          this.store.dispatch(ActionProduct.setProducts({products: products}));
-      }),
-      catchError((error) => {
-        this.errorMessage = error.message;
-        return EmptyError;
-      })
-    );
-  }
-
   getNumberOfPages() {
-    if (this.lengthOfProducts === 0) {
+    if (this.lengthOfProducts === undefined || this.lengthOfProducts === 0) {
         return new Array(1);
     };
     const numberOfPages = Math.ceil(this.lengthOfProducts / this.numberOfProductsByPag);
@@ -110,7 +100,9 @@ export class ProductsComponent implements OnInit {
   setProductByPage(productList: Array<Product>) {
     const start = (this.numberOfProductsByPag * this.actualNumber) - this.numberOfProductsByPag ;
     const end = this.numberOfProductsByPag * this.actualNumber;
-    return productList.slice(start,end);
+    if (productList && productList.length > 0) {
+      return productList.slice(start,end);
+    }
   }
 
   getProductAdded(product: Product) {
@@ -134,7 +126,7 @@ export class ProductsComponent implements OnInit {
   setCart(products: Product, index: number) {
     this.cartId = index;
     this.store.dispatch(ActionProduct.setCart({products}));
+    this.store.dispatch(ActionProduct.isAddProductInCart({isAdd: true}));
     this.store.dispatch(ActionProduct.getTotalCart());
   }
 }
-

@@ -21,7 +21,7 @@ class MockStoreService {
   }
 }
 
-fdescribe('CartComponent', () => {
+describe('CartComponent', () => {
   let component: CartComponent;
   let fixture: ComponentFixture<CartComponent>;
 

@@ -24,7 +24,7 @@
             <img src="/assets/icons/bag.svg" alt="cart">
             <span class="badges">{{badgeCartNumber}}</span>
         </div>
-        <div *ngIf="badgeCartNumber > 0 && showCart"
+        <div [@showHideCart]="(isAddInCart$ | async) || badgeCartNumber > 0 && showCart ? 'open' : 'closed'" 
              id="modal-cart"  (mouseleave)="showModal()">
             <app-modal-cart></app-modal-cart>
         </div>

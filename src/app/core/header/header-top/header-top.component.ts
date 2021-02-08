@@ -14,9 +14,15 @@ export class HeaderTopComponent implements OnInit {
   faTwitter = faTwitter;
   faPinterest = faPinterest;
   faUser = faUser;
+  flag = 'en';
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  setFlag(event) {
+    this.flag = event;
+
   }
 
 }

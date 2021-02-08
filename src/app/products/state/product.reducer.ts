@@ -1,6 +1,6 @@
 import { Product } from './../product';
 /* eslint-disable arrow-body-style */
-import { createReducer, on,props, createAction } from '@ngrx/store'
+import { createReducer, on,props, createAction } from '@ngrx/store';
 import  * as ProductActions from './products.actions';
 import * as AppState from '../../state/app.state';
 
@@ -14,20 +14,24 @@ export interface ProductState {
     cart: Product[];
     numberOfProductSelect: number;
     totalCart: string;
+    error: string;
+    addCartEvent: boolean;
 }
 
 const initialState = {
     favorite: [],
     numberOfProductSelect: 0,
     products: [],
+    error: '',
     cart: [],
-    totalCart: '0'
+    totalCart: '0',
+    addCartEvent: false
+
 };
 
 export const productReduce = createReducer<ProductState>(
     initialState,
     on(ProductActions.setFavorite, (state, action: any): ProductState  => {
-        console.log(state, action.product);
         return {
            ...state,
            favorite: [...state.favorite, action.product]
@@ -92,7 +96,35 @@ export const productReduce = createReducer<ProductState>(
            ...state,
            totalCart: valueOfProduct.toFixed(2)
        };
-    })
+    }),
 
+    on(ProductActions.loadProducts, (state, action: any): ProductState  => {
+        return {
+           ...state,
+           totalCart: ''
+       };
+    }),
+    on(ProductActions.loadProductsSuccess, (state, action: any): ProductState  => {
+        return {
+           ...state,
+           products: [...state.products, ...action.products]
+
+       };
+    }),
+
+    on(ProductActions.loadProductsFailure, (state, action: any): ProductState  => {
+        return {
+           ...state,
+           error: action.error
+       };
+    }),
+
+    on(ProductActions.isAddProductInCart, (state, action: any): ProductState  => {
+        return {
+           ...state,
+           addCartEvent: action.isAdd
+
+       };
+    })
 );
 
