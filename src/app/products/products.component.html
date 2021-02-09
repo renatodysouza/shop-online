@@ -24,7 +24,7 @@
                         {{product.title | slice:0:25}}
                     </div>
                     <div class="all-price">
-                        <div class="product-price">€ {{product.price}}</div>
+                        <div class="product-price">€ {{product.price | DiscountPipe:10}}</div>
                         <div class="product-discount">€ {{product.price}}</div>
                </div>
             </div>

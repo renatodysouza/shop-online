@@ -1,8 +1,8 @@
-import { WrapTextPipe } from './wrap-text.pipe';
+import { DiscountPipe } from './discount.pipe';
 
 describe('WrapTextPipe', () => {
   it('create an instance', () => {
-    const pipe = new WrapTextPipe();
+    const pipe = new DiscountPipe();
     expect(pipe).toBeTruthy();
   });
 });

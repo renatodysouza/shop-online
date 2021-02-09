@@ -1,13 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { WrapTextPipe } from './wrap-text.pipe';
-
-// put directive, pipes, components shared in multiple modules 
-// example loading spinner
+import { DiscountPipe } from './discount.pipe';
 
 @NgModule({
-  declarations: [ WrapTextPipe],
+  declarations: [ DiscountPipe],
   imports: [
     CommonModule,
     FontAwesomeModule,
@@ -15,7 +12,7 @@ import { WrapTextPipe } from './wrap-text.pipe';
   exports: [
     CommonModule,
     FontAwesomeModule,
-    WrapTextPipe
+    DiscountPipe
   ]
 })
 export class SharedModule { }
