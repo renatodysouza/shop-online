@@ -107,7 +107,7 @@ export const productReduce = createReducer<ProductState>(
     on(ProductActions.loadProductsSuccess, (state, action: any): ProductState  => {
         return {
            ...state,
-           products: [...state.products, ...action.products]
+           products: [...action.products]
 
        };
     }),
