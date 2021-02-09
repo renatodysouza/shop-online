@@ -50,9 +50,9 @@ export class ProductsComponent implements OnInit {
   showProductOptions = false;
   idSelected: string;
   numberOfPaginator: Array<any>;
-  lengthOfProducts: number;
   favoriteId: number;
   cartId: number;
+  numberOfPag: Array<any>;
 
 
   constructor(
@@ -67,11 +67,13 @@ export class ProductsComponent implements OnInit {
     this.store.dispatch(ActionProduct.loadProducts());
     this.getProductList();
     this.errorMessage$ = this.store.select(getErrorProduct);
+
   }
 
   getProductList() {
     this.productList$ = this.store.select(getProductList)
     .pipe(
+      tap((prod) =>  this.getNumberOfPages(prod.length)),
       map(prod => this.setProductByPage(prod))
     );
   }
@@ -84,12 +86,12 @@ export class ProductsComponent implements OnInit {
     );
   }
 
-  getNumberOfPages() {
-    if (this.lengthOfProducts === undefined || this.lengthOfProducts === 0) {
+  getNumberOfPages(lengthOfProducts) {
+    if (lengthOfProducts === undefined || lengthOfProducts === 0) {
         return new Array(1);
     };
-    const numberOfPages = Math.ceil(this.lengthOfProducts / this.numberOfProductsByPag);
-    return new Array(numberOfPages);
+    const numberOfPages = Math.ceil(lengthOfProducts / this.numberOfProductsByPag);
+    this.numberOfPag = new Array(numberOfPages);
   }
 
   changeNumberPage(numberPage: number) {

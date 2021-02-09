@@ -31,7 +31,7 @@
         </div>
         <div id="paginator" *ngIf="true">
             <div (click)='changeNumberPage(i + 1)'
-             *ngFor="let item of getNumberOfPages(); let i = index">
+             *ngFor="let item of numberOfPag; let i = index">
                 <div 
                     class="pag-number"
                     [ngStyle]="{ 'backgroundColor': actualNumber === i + 1 ? '#ff5722' : '#d6d6d6'}">
