@@ -69,8 +69,12 @@ export class SubHeaderComponent implements OnInit {
         });
   }
 
-  showModal() {
-    this.showCart = !this.showCart;
+  closeShowModal() {
+    this.showCart = false;
+  }
+
+  openShowModal() {
+    this.showCart = true;
   }
 
 }

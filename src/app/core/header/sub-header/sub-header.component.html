@@ -1,5 +1,5 @@
-<div class="sub-content">
-    <div id="logo-container"><span id="logo">ShopFi</span></div>
+<div class="sub-content"  >
+    <div [routerLink]="['/']" id="logo-container"><span id="logo">ShopFi</span></div>
     <div id="search-container">
         <div id="search-group">
             <select name="" id="category-search">
@@ -10,24 +10,25 @@
             <div id="btn-search">
                 <fa-icon [icon]="faSearch"></fa-icon>
             </div>
-
         </div>
-       
+     
     </div>
-    <div id="icones">
+    <div id="icones" (mouseleave)="closeShowModal()">
         <div class="fav-group">
             <img src="/assets/icons/heart.svg" alt="favorite">
             <span class="badges">{{ badgeFavoriteNumber }}</span>
         </div>
-        <div class="fav-group" 
-        (mouseenter)="showModal()">
+        <div [routerLink]="['/cart']" class="fav-group" (mouseenter)="openShowModal()">
             <img src="/assets/icons/bag.svg" alt="cart">
             <span class="badges">{{badgeCartNumber}}</span>
         </div>
-        <div [@showHideCart]="(isAddInCart$ | async) || badgeCartNumber > 0 && showCart ? 'open' : 'closed'" 
-             id="modal-cart"  (mouseleave)="showModal()">
+
+       <div (mouseenter)="openShowModal()"  [@showHideCart]="(isAddInCart$ | async) || badgeCartNumber > 0 && showCart ? 'open' : 'closed'" 
+             id="modal-cart"  >
             <app-modal-cart></app-modal-cart>
         </div>
     </div>
-    <div id="value">€ {{totalCart$ | async}}</div>
+    <div id="value">
+        <span *ngIf="totalCart$ | async">€ {{totalCart$ | async}}</span>
+    </div>
 </div>

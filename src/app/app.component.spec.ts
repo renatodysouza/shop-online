@@ -14,6 +14,7 @@ import { ProductModule } from './products/product.module';
 import { SharedModule } from './shared/shared.module';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -30,6 +31,7 @@ describe('AppComponent', () => {
         HttpClientModule,
         AppRoutingModule,
         FontAwesomeModule,
+        RouterTestingModule,
         CoreModule,
         SharedModule,
         ProductModule,

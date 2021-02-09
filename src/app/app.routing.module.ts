@@ -5,8 +5,8 @@ import { ProductsComponent } from './products/products.component';
 
 
 const appRoutes: Routes = [
-  { path: '', component: ProductsComponent },
-  { path: 'cart', component: CartComponent },
+  { path: '', component: ProductsComponent, loadChildren: './products/product.module#ProductModule' },
+  { path: 'cart', component: CartComponent, loadChildren: './cart/cart.module#CartModule' },
 ];
 
 @NgModule({
